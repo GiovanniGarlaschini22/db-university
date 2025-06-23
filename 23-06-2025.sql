@@ -17,3 +17,8 @@ WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE()) > 30;
 SELECT *
 FROM `courses`
 WHERE `period` = 'I semestre' AND `year` = 1;
+
+/* milestone 5 */
+SELECT *
+FROM `exams`
+WHERE `date` = '2020-06-20' AND `hour` > '14:00:00';
