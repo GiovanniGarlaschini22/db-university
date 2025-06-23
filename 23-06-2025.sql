@@ -27,3 +27,7 @@ WHERE `date` = '2020-06-20' AND `hour` > '14:00:00';
 SELECT *
 FROM `degrees`
 WHERE `level` = 'magistrale';
+
+/* milestone 7 */
+SELECT COUNT(`id`) AS numero_dipartimenti
+FROM `departments`;
