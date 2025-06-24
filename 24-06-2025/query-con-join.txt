@@ -21,7 +21,6 @@ WHERE `departments`.`name` = 'Neuroscienze'
 AND `degrees`.`level` = 'Magistrale'
 ORDER BY `degrees`.`name` ASC;
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 /* milestone 3 */
@@ -35,3 +34,15 @@ INNER JOIN `degrees`
 ON `courses`.`degree_id` = `degrees`.`id`
 WHERE `course_teacher`.`teacher_id` = 44
 ORDER BY `courses`.`year` ASC, `courses`.`name` ASC;
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+/* milestone 4 */
+Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome
+
+SELECT `students`.`name` AS `student_name`, `students`.`surname` AS `student_surname`, `students`.`registration_number`, `degrees`.`name` AS `degree_name`, `degrees`.`level`, `departments`.`name` AS `department_name`
+FROM `students`
+INNER JOIN `degrees` 
+ON `students`.`degree_id` = `degrees`.`id`
+INNER JOIN `departments` 
+ON `degrees`.`department_id` = `departments`.`id`
