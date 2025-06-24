@@ -20,3 +20,18 @@ ON `degrees`.`department_id` = `departments`.`id`
 WHERE `departments`.`name` = 'Neuroscienze' 
 AND `degrees`.`level` = 'Magistrale'
 ORDER BY `degrees`.`name` ASC;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+/* milestone 3 */
+Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+
+SELECT `courses`.`name` AS `course_name`, `courses`.`year`, `courses`.`period`, `courses`.`cfu`, `degrees`.`name` AS `degree_name`
+FROM `courses`
+INNER JOIN `course_teacher` 
+ON `courses`.`id` = `course_teacher`.`course_id`
+INNER JOIN `degrees` 
+ON `courses`.`degree_id` = `degrees`.`id`
+WHERE `course_teacher`.`teacher_id` = 44
+ORDER BY `courses`.`year` ASC, `courses`.`name` ASC;
