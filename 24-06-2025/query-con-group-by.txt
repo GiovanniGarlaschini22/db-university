@@ -1,0 +1,48 @@
+/* milestone 1 */
+Contare quanti iscritti ci sono stati ogni anno
+
+SELECT YEAR(`students`.`enrolment_date`) AS `anno_iscrizione`, COUNT(`students`.`id`) AS `numero_iscritti`
+FROM `students`
+WHERE `students`.`enrolment_date` IS NOT NULL
+GROUP BY YEAR(`students`.`enrolment_date`)
+ORDER BY `anno_iscrizione` ASC;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/* milestone 2 */
+Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+
+SELECT `teachers`.`office_address` AS `edificio`, COUNT(`teachers`.`id`) AS `numero_insegnanti`
+FROM `teachers`
+WHERE `teachers`.`office_address` IS NOT NULL 
+AND `teachers`.`office_address` != ''
+GROUP BY `teachers`.`office_address`
+ORDER BY `numero_insegnanti` DESC;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/* milestone 3 */
+Calcolare la media dei voti di ogni appello d'esame
+
+SELECT `exams`.`id` AS `exam_id`, `exams`.`date` AS `data_esame`, `exams`.`hour` AS `ora_esame`, `exams`.`location` AS `aula`, `courses`.`name` AS `corso`, COUNT(`exam_student`.`student_id`) AS `numero_studenti`, AVG(`exam_student`.`vote`) AS `media_voti`, SUM(`exam_student`.`vote`) AS `somma_voti`
+FROM `exams`
+INNER JOIN `exam_student` 
+ON `exams`.`id` = `exam_student`.`exam_id`
+INNER JOIN `courses` 
+ON `exams`.`course_id` = `courses`.`id`
+WHERE `exam_student`.`vote` IS NOT NULL
+GROUP BY `exams`.`id`, `exams`.`date`, `exams`.`hour`, `exams`.`location`, `courses`.`name`
+ORDER BY `exams`.`date` DESC, `media_voti` DESC;
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/* milestone 4 */
+Contare quanti corsi di laurea ci sono per ogni dipartimento
+
+SELECT `departments`.`id` AS `department_id`, `departments`.`name` AS `nome_dipartimento`, `departments`.`head_of_department` AS `direttore`, COUNT(`degrees`.`id`) AS `numero_corsi_laurea`
+FROM `departments`
+INNER JOIN `degrees` 
+ON `departments`.`id` = `degrees`.`department_id`
+GROUP BY `departments`.`id`, `departments`.`name`, `departments`.`head_of_department`
+ORDER BY `numero_corsi_laurea` DESC;
